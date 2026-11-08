@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5 - Multi-Function Utility(24CS051)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 10px; }
+        #result { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="form-group">
+        <label for="numInput">Number </label>
+        <input type="number" id="numInput" placeholder="Enter number">
+    </div>
+
+    <div>
+        <button onclick="generateTable()">table</button>
+        <button onclick="calcSquare()">square</button>
+        <button onclick="checkPrime()">prime</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script type="text/javascript">
+        function getNumber() {
+            var val = document.getElementById("numInput").value;
+            if (val === "" || isNaN(val)) {
+                alert("Please enter a valid number first!");
+                return null;
+            }
+            return parseFloat(val);
+        }
+
+        // Function 1: Generate Multiplication Table
+        function generateTable() {
+            var num = getNumber();
+            if (num === null) return;
+
+            var output = "<h3>Multiplication Table for " + num + ":</h3>";
+            for (var i = 1; i <= 10; i++) {
+                output += num + " x " + i + " = " + (num * i) + "<br>";
+            }
+            document.getElementById("result").innerHTML = output;
+        }
+
+        // Function 2: Calculate Square
+        function calcSquare() {
+            var num = getNumber();
+            if (num === null) return;
+
+            var sq = num * num;
+            document.getElementById("result").innerHTML = "Square of " + num + " is: " + sq;
+        }
+
+        // Function 3: Check Prime Number
+        function checkPrime() {
+            var num = getNumber();
+            if (num === null) return;
+
+            var intNum = parseInt(num);
+            if (intNum <= 1) {
+                document.getElementById("result").innerHTML = intNum + " is NOT a prime number.";
+                return;
+            }
+
+            var isPrime = true;
+            for (var i = 2; i <= Math.sqrt(intNum); i++) {
+                if (intNum % i === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                document.getElementById("result").innerHTML = intNum + " IS a prime number.";
+            } else {
+                document.getElementById("result").innerHTML = intNum + " is NOT a prime number.";
+            }
+        }
+    </script>
+</body>
+</html>

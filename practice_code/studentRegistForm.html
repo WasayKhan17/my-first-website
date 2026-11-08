@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 5 - Student Registration Form (24CS051)</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container my-5">
+  <div class="card shadow mx-auto" style="max-width: 800px;">
+    <div class="card-header bg-primary text-white"><h3 class="mb-0">Student Registration Form</h3></div>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dept" class="form-label">Department</label>
+            <select class="form-select" id="dept">
+              <option selected disabled>Choose...</option>
+              <option>Computer Systems Engineering</option>
+              <option>Software Engineering</option>
+              <option>Electrical Engineering</option>
+              <option>Mechanical Engineering</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label d-block">Gender</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+            <label class="form-check-label" for="other">Other</label>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label d-block">Skills</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="html" value="html">
+            <label class="form-check-label" for="html">HTML/CSS</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="js" value="js">
+            <label class="form-check-label" for="js">JavaScript</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="py" value="py">
+            <label class="form-check-label" for="py">Python</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="sql" value="sql">
+            <label class="form-check-label" for="sql">SQL</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success me-2">Submit</button>
+        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

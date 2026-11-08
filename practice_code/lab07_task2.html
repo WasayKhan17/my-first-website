@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2 - Temperature Converter</title>
+</head>
+<body>
+    <h2>Temperature Converter - 24CS051</h2>
+    
+    <script type="text/javascript">
+        var choice = prompt("Choose conversion direction:\n1. Celsius to Fahrenheit\n2. Fahrenheit to Celsius");
+
+        if (choice === "1") {
+            var celsius = parseFloat(prompt("Enter temperature in Celsius:"));
+            if (!isNaN(celsius)) {
+                var fahrenheit = (celsius * 9/5) + 32;
+                alert(celsius + "°C is equal to " + fahrenheit.toFixed(2) + "°F");
+            } else {
+                alert("Invalid input!");
+            }
+        } else if (choice === "2") {
+            var fahrenheit = parseFloat(prompt("Enter temperature in Fahrenheit:"));
+            if (!isNaN(fahrenheit)) {
+                var celsius = (fahrenheit - 32) * 5/9;
+                alert(fahrenheit + "°F is equal to " + celsius.toFixed(2) + "°C");
+            } else {
+                alert("Invalid input!");
+            }
+        } else {
+            alert("Invalid choice! Please refresh and select 1 or 2.");
+        }
+    </script>
+</body>
+</html>

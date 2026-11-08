@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>(24cs051) Date of Birth and Country</title>
+
+
+    <style>
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            background-color: #ffffff;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+
+        .main-wrapper {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: row;
+
+            align-items: flex-start;
+
+            gap: 25px;
+
+            padding: 20px;
+
+        }
+
+        .previous {
+
+            width: 317px;
+
+            height: 228px;
+
+            position: relative;
+
+            background-color: #ffffff;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .form {
+
+            position: absolute;
+
+            top: 18px;
+
+            left: 38px;
+
+            width: 234px;
+
+        }
+
+        .date-row {
+
+            width: 234px;
+
+            display: flex;
+
+            flex-direction: row;
+
+            gap: 9px;
+
+        }
+
+
+ 
+        .input-box {
+
+            position: relative;
+
+            height: 34px;
+
+            background-color: #ffffff;
+
+            border: 1px solid #e2e2e2;
+
+            border-radius: 4px;
+
+        }
+
+
+
+        .day-box {
+
+            width: 72px;
+
+        }
+
+
+        .month-box {
+
+            width: 72px;
+
+        }
+
+
+
+        .year-box {
+
+            width: 72px;
+
+        }
+
+
+        .label {
+
+            position: absolute;
+
+            top: -7px;
+
+            left: 7px;
+
+            padding-left: 3px;
+
+            padding-right: 3px;
+
+            background-color: #ffffff;
+
+            color: #777777;
+
+            font-size: 9px;
+
+            font-weight: normal;
+
+            line-height: 12px;
+
+            z-index: 5;
+
+        }
+
+
+  
+        .text-input {
+
+            width: 100%;
+
+            height: 100%;
+
+            padding-left: 8px;
+
+            padding-right: 8px;
+
+            border: none;
+
+            outline: none;
+
+            background-color: transparent;
+
+            color: #333333;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .month-select {
+
+            width: 100%;
+
+            height: 100%;
+
+            padding-left: 7px;
+
+            padding-right: 7px;
+
+            border: none;
+
+            outline: none;
+
+            background-color: #ffffff;
+
+            color: #333333;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+        }
+
+        .gender-box {
+
+            width: 234px;
+
+            height: 34px;
+
+            margin-top: 16px;
+
+        }
+
+
+
+        .gender-select {
+
+            width: 100%;
+
+            height: 100%;
+
+            padding-left: 8px;
+
+            padding-right: 8px;
+
+            border: none;
+
+            outline: none;
+
+            background-color: #ffffff;
+
+            color: #777777;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+        }
+
+
+        .why-link {
+
+            position: absolute;
+
+            top: 125px;
+
+            left: 38px;
+
+            color: #1769aa;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+        }
+
+
+        .why-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+ 
+        .bottom-area {
+
+            position: absolute;
+
+            top: 158px;
+
+            left: 38px;
+
+            width: 234px;
+
+            display: flex;
+
+            flex-direction: row;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+  
+        .back-link {
+
+            color: #1769aa;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+        }
+
+
+        .back-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .next-button {
+
+            width: 52px;
+
+            height: 25px;
+
+            padding: 0;
+
+            border: none;
+
+            border-radius: 3px;
+
+            background-color: #1769e8;
+
+            color: #ffffff;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 10px;
+
+            cursor: pointer;
+
+        }
+
+
+        .next-button:hover {
+
+            background-color: #125bd0;
+
+        }
+
+
+        .logo {
+
+            position: absolute;
+
+            top: 201px;
+
+            left: 142px;
+
+            width: 45px;
+
+            text-align: center;
+
+            line-height: 9px;
+
+        }
+
+
+        .logo-scaler {
+
+            display: block;
+
+            color: #111111;
+
+            font-size: 7px;
+
+            font-weight: bold;
+
+        }
+
+
+        .logo-topics {
+
+            display: block;
+
+            color: #e5007e;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+            transform: rotate(-3deg);
+
+        }
+
+
+        .country-section {
+
+            width: 268px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .country-search {
+
+            width: 268px;
+
+            height: 34px;
+
+            display: block;
+
+            padding-left: 7px;
+
+            padding-right: 7px;
+
+            border: 1px solid #b8b8b8;
+
+            outline: none;
+
+            background-color: #ffffff;
+
+            color: #333333;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        .country-list {
+
+            width: 268px;
+
+            background-color: #ffffff;
+
+            border-left: 1px solid #d1d1d1;
+
+            border-right: 1px solid #d1d1d1;
+
+            border-bottom: 1px solid #d1d1d1;
+
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .country {
+
+            width: 100%;
+
+            height: 18px;
+
+            padding-left: 6px;
+
+            display: flex;
+
+            align-items: center;
+
+            border-top: 1px solid #dddddd;
+
+            background-color: #ffffff;
+
+            color: #333333;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 10px;
+
+            line-height: 18px;
+
+        }
+
+
+        .country:hover {
+
+            background-color: #f2f2f2;
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="main-wrapper">
+
+        <div class="previous">
+
+            <form class="form">
+
+
+                <div class="date-row">
+
+                    <div class="input-box day-box">
+
+                        <span class="label">
+                            Day
+                        </span>
+
+
+                        <input
+                            class="text-input"
+                            type="text"
+                            name="day"
+                            maxlength="2"
+                        >
+
+                    </div>
+
+    <div class="input-box month-box">
+
+                        <span class="label">
+                            Month
+                        </span>
+
+
+                        <select
+                            class="month-select"
+                            name="month"
+                        >
+
+                            <option value="January">
+                                January
+                            </option>
+
+                            <option value="February">
+                                February
+                            </option>
+
+                            <option value="March">
+                                March
+                            </option>
+
+                            <option value="April">
+                                April
+                            </option>
+
+                            <option value="May">
+                                May
+                            </option>
+
+                            <option value="June">
+                                June
+                            </option>
+
+                            <option value="July">
+                                July
+                            </option>
+
+                            <option value="August">
+                                August
+                            </option>
+
+                            <option value="September">
+                                September
+                            </option>
+
+                            <option value="October">
+                                October
+                            </option>
+
+                            <option value="November">
+                                November
+                            </option>
+
+                            <option value="December">
+                                December
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-box year-box">
+
+                        <span class="label">
+                            Year
+                        </span>
+
+
+                        <input
+                            class="text-input"
+                            type="text"
+                            name="year"
+                            maxlength="4"
+                        >
+
+                    </div>
+
+
+                </div>
+
+                <div class="input-box gender-box">
+
+                    <span class="label">
+                        Gender
+                    </span>
+
+
+                    <select
+                        class="gender-select"
+                        name="gender"
+                    >
+
+                        <option value=""></option>
+
+                        <option value="male">
+                            Male
+                        </option>
+
+                        <option value="female">
+                            Female
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </form>
+
+       <a
+                href="#"
+                class="why-link"
+            >
+                Why we ask for this
+            </a>
+
+            <div class="bottom-area">
+
+                <a
+                    href="#"
+                    class="back-link"
+                >
+                    Back
+                </a>
+
+                <button
+                    type="button"
+                    class="next-button"
+                >
+                    Next
+                </button>
+
+
+            </div>
+
+            <div class="logo">
+
+                <span class="logo-scaler">
+                    SCALER
+                </span>
+
+                <span class="logo-topics">
+                    Topics
+                </span>
+
+            </div>
+
+
+        </div>
+
+        <div class="country-section">
+
+            <input
+                type="text"
+                class="country-search"
+                value="uni"
+            >
+
+            <div class="country-list">
+
+
+                <div class="country">
+                    United States
+                </div>
+
+
+                <div class="country">
+                    United Kingdom
+                </div>
+
+
+                <div class="country">
+                    Tanzania, United Republic of
+                </div>
+
+
+                <div class="country">
+                    United Arab Emirates
+                </div>
+
+
+                <div class="country">
+                    United States Minor Outlying Islands
+                </div>
+
+
+                <div class="country">
+                    Réunion
+                </div>
+
+
+                <div class="country">
+                    Tunisia
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Light Bulb Control</title>
+  <link rel="stylesheet" href="simple_bulb_styling.css">
+</head>
+<body>
+  <main class="stage" id="stage" data-state="off">
+
+    <!-- Bulb (inline SVG, styled by the data-state attribute on #stage) -->
+    <svg class="bulb" viewBox="0 0 200 280" role="img" aria-label="Light bulb">
+      <!-- Glass -->
+      <path class="glass"
+            d="M100 10 C52 10 22 46 22 92 C22 126 42 142 54 166
+               C60 178 62 188 62 200 L138 200 C138 188 140 178 146 166
+               C158 142 178 126 178 92 C178 46 148 10 100 10 Z"/>
+      <!-- Filament -->
+      <path class="filament"
+            d="M84 200 L84 150 Q84 128 92 128 Q100 128 100 150 Q100 128 108 128 Q116 128 116 150 L116 200"/>
+      <!-- Metal base -->
+      <rect class="base" x="64" y="200" width="72" height="16" rx="3"/>
+      <rect class="base" x="64" y="220" width="72" height="16" rx="3"/>
+      <rect class="base" x="68" y="240" width="64" height="16" rx="3"/>
+      <path class="base-tip" d="M82 258 L118 258 L110 272 L90 272 Z"/>
+    </svg>
+
+    <!-- Controls -->
+    <div class="controls" role="group" aria-label="Bulb controls">
+      <button type="button" id="btnOn" title="Double-click for colorful light">ON</button>
+      <button type="button" id="btnOff">OFF</button>
+      <button type="button" id="btnAuto">Auto Off (5 sec)</button>
+    </div>
+
+    <p class="status" id="status" aria-live="polite">Bulb is OFF</p>
+  </main>
+
+  <script src="simple_bulb.js"></script>
+</body>
+</html>

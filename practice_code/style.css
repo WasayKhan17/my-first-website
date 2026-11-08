@@ -1,0 +1,111 @@
+/* Body background set to the tunnel image shown in the lab document */
+body {
+    background-image: url("space-tunnel.jpg"); /* Replace with your background image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Red top header bar with blue bold text */
+.bold-heading {
+    background-color: red;
+    color: blue;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+}
+
+/* Main title styling with side lines */
+.title {
+    text-align: center;
+    color: #FFFF00; /* Bright yellow */
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.title span {
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding: 0 15px;
+}
+
+/* Small red text */
+.red-text {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Horizontal line separator */
+.line {
+    width: 70%;
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 10px auto;
+}
+
+/* Green scrolling text bar */
+.green-bar {
+    background-color: green;
+    color: black;
+    font-weight: bold;
+    padding: 6px 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form Table Alignment */
+.form-table {
+    margin: 0 auto;
+    border-spacing: 12px 8px;
+}
+
+.form-table td {
+    padding: 2px;
+}
+
+.form-table label {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 220px;
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+}
+
+select {
+    padding: 3px 5px;
+    font-size: 14px;
+}
+
+/* Centered Submit and Reset buttons */
+.btn-row {
+    text-align: center;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 4px 16px;
+    margin: 10px 5px 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e1e1e1;
+    border: 1px solid #707070;
+}

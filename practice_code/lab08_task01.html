@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 8 - Registration Form & Date Object</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 20px;
+        }
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .live-datetime {
+            background-color: #eef2f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .inline-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .inline-group label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+        button[type="reset"] {
+            background-color: #dc3545;
+            color: white;
+        }
+        #ageResult {
+            margin-top: 5px;
+            font-size: 13px;
+            color: #2980b9;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration Form</h2>
+    
+    <!-- Task 5: Display Current Day & Time -->
+    <div class="live-datetime">
+        <div id="dayOutput"></div>
+        <div id="timeOutput"></div>
+    </div>
+
+    <form id="regForm" onsubmit="return validateForm()">
+        
+        <!-- 1. Name -->
+        <div class="form-group">
+            <label for="fullName">Name:</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
+        </div>
+
+        <!-- 2. Father Name -->
+        <div class="form-group">
+            <label for="fatherName">Father Name:</label>
+            <input type="text" id="fatherName" name="fatherName" required placeholder="Enter father's name">
+        </div>
+
+        <!-- 3. Surname -->
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required placeholder="Enter surname">
+        </div>
+
+        <!-- 4. Password -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter password">
+        </div>
+
+        <!-- 5. Confirm Password -->
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter password">
+        </div>
+
+        <!-- 6. Date of Birth (Task 4: Age calculation via Date Object) -->
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required onchange="calculateAge()">
+            <div id="ageResult"></div>
+        </div>
+
+        <!-- 7. Cell No / NIC Validation (Task 2 & 3) -->
+        <div class="form-group">
+            <label for="cellNo">Cell No:</label>
+            <input type="tel" id="cellNo" name="cellNo" required placeholder="e.g. 03001234567">
+        </div>
+
+        <!-- 8. Country -->
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="">-- Select Country --</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+
+        <!-- 9. Gender -->
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="inline-group">
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+                
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+            </div>
+        </div>
+
+        <!-- 10. Language -->
+        <div class="form-group">
+            <label>Language:</label>
+            <div class="inline-group">
+                <input type="checkbox" id="langEnglish" name="language" value="English">
+                <label for="langEnglish">English</label>
+
+                <input type="checkbox" id="langUrdu" name="language" value="Urdu">
+                <label for="langUrdu">Urdu</label>
+
+                <input type="checkbox" id="langSindhi" name="language" value="Sindhi">
+                <label for="langSindhi">Sindhi</label>
+            </div>
+        </div>
+
+        <!-- Submit & Reset Buttons -->
+        <div class="btn-container">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+    // --- TASK 5: JS Date Object - Display Current Day & Time ---
+    function displayCurrentDateTime() {
+        var now = new Date();
+        
+        var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var dayName = daysOfWeek[now.getDay()];
+
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+
+        document.getElementById("dayOutput").innerText = "Today is : " + dayName + ".";
+        document.getElementById("timeOutput").innerText = "Current Time : " + hours + " " + ampm + " : " + minutes + " : " + seconds;
+    }
+    
+    // Run live time update on load and every second
+    displayCurrentDateTime();
+    setInterval(displayCurrentDateTime, 1000);
+
+    // --- TASK 4: JS Date Object - Calculate Age in Years, Months & Days ---
+    function calculateAge() {
+        var dobInput = document.getElementById("dob").value;
+        if (!dobInput) return;
+
+        var birthDate = new Date(dobInput);
+        var today = new Date();
+
+        var years = today.getFullYear() - birthDate.getFullYear();
+        var months = today.getMonth() - birthDate.getMonth();
+        var days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+            months--;
+            var prevMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            days += prevMonthLastDay;
+        }
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        document.getElementById("ageResult").innerText = 
+            "Age: " + years + " Years, " + months + " Months, and " + days + " Days.";
+    }
+
+    // --- TASK 2 & 3: Form Validation ---
+    function validateForm() {
+        var name = document.getElementById("fullName").value.trim();
+        var fatherName = document.getElementById("fatherName").value.trim();
+        var surname = document.getElementById("surname").value.trim();
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        // Task 3: Check for special characters or numbers in text fields
+        var textOnlyPattern = /^[A-Za-z\s]+$/;
+        if (!textOnlyPattern.test(name) || !textOnlyPattern.test(fatherName) || !textOnlyPattern.test(surname)) {
+            alert("Invalid data");
+            return false;
+        }
+
+        // Password matching validation
+        if (password !== confirmPassword) {
+            alert("Error: Password and Confirm Password do not match!");
+            return false;
+        }
+
+        if (password.length < 6) {
+            alert("Error: Password must be at least 6 characters long.");
+            return false;
+        }
+
+        // Language Selection check
+        var langCheckboxes = document.querySelectorAll('input[name="language"]:checked');
+        if (langCheckboxes.length === 0) {
+            alert("Please select at least one language.");
+            return false;
+        }
+
+        alert("Form Submitted Successfully!");
+        return false; // Prevent page refresh for practical demo
+    }
+</script>
+
+</body>
+</html>

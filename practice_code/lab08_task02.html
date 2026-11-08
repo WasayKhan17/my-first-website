@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2 - NIC Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .error { color: red; margin-top: 5px; }
+        .success { color: green; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>NIC / CNIC Validation</h2>
+    <form onsubmit="return validateNIC()">
+        <label for="nic">Enter NIC Number:</label><br>
+        <input type="text" id="nic" placeholder="e.g. 41302-1234567-1" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="msg"></div>
+
+    <script type="text/javascript">
+        function validateNIC() {
+            var nicInput = document.getElementById("nic").value.trim();
+            var msgDiv = document.getElementById("msg");
+
+            // Regular Expression for 13 digits with optional hyphens (e.g. 12345-1234567-1 or 1234512345671)
+            var nicPattern = /^\d{5}-\d{7}-\d{1}$|^\d{13}$/;
+
+            if (nicPattern.test(nicInput)) {
+                msgDiv.className = "success";
+                msgDiv.innerHTML = "Valid NIC format! Form submitted successfully.";
+                return false; // Prevent actual page reload for demo
+            } else {
+                msgDiv.className = "error";
+                msgDiv.innerHTML = "Invalid NIC format! Expected format: XXXXX-XXXXXXX-X or 13 digits.";
+                return false; // Stop form submission
+            }
+        }
+    </script>
+
+</body>
+</html>

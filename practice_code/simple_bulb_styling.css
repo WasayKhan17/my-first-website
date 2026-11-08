@@ -1,0 +1,221 @@
+:root {
+  --room: #15171c;
+  --room-lit: #2a2418;
+  --glass-off: #4a4f58;
+  --glass-on: #ffd84d;
+  --glow: rgba(255, 200, 60, 0.75);
+  --metal: #8b9099;
+  --text: #e8e6e1;
+  --muted: #9a9ca3;
+  --btn-bg: #22252c;
+  --btn-border: #343843;
+  --accent: #ffd84d;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  display: flex;
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal centering */
+  background: var(--room);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  transition: background 0.6s ease;
+}
+
+/* The room brightens slightly when the bulb is on */
+body:has(#stage[data-state="on"]) { background: var(--room-lit); }
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+/* ---------- Bulb ---------- */
+.bulb {
+  width: min(48vw, 200px);
+  height: auto;
+  transition: filter 0.5s ease;
+}
+
+.glass {
+  fill: var(--glass-off);
+  stroke: #5c626d;
+  stroke-width: 2;
+  transition: fill 0.5s ease, stroke 0.5s ease;
+}
+
+.filament {
+  fill: none;
+  stroke: #2e323a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.5s ease;
+}
+
+.base { fill: var(--metal); }
+.base-tip { fill: #565b64; }
+
+/* ON state: yellow glass + glow */
+.stage[data-state="on"] .glass {
+  fill: var(--glass-on);
+  stroke: #ffe98f;
+}
+.stage[data-state="on"] .filament { stroke: #fff6d0; }
+.stage[data-state="on"] .bulb {
+  filter: drop-shadow(0 0 18px var(--glow)) drop-shadow(0 0 50px var(--glow));
+}
+
+/* ---------- Colorful dancing mode (double-click ON) ---------- */
+
+/* The bulb sways, bounces and changes color while its glow pulses */
+.stage[data-state="on"].colorful .bulb {
+  transform-origin: 50% 90%;
+  animation:
+    rainbow 3s linear infinite,
+    dance 1.2s ease-in-out infinite;
+}
+
+/* Color cycling + pulsing glow */
+@keyframes rainbow {
+  0% {
+    filter: drop-shadow(0 0 18px var(--glow)) drop-shadow(0 0 50px var(--glow)) hue-rotate(0deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 30px var(--glow)) drop-shadow(0 0 90px var(--glow)) hue-rotate(180deg);
+  }
+  100% {
+    filter: drop-shadow(0 0 18px var(--glow)) drop-shadow(0 0 50px var(--glow)) hue-rotate(360deg);
+  }
+}
+
+/* Side-to-side sway with a little hop on each beat */
+@keyframes dance {
+  0%   { transform: rotate(-10deg) translateY(0)     scale(1); }
+  25%  { transform: rotate(0deg)   translateY(-14px) scale(1.06); }
+  50%  { transform: rotate(10deg)  translateY(0)     scale(1); }
+  75%  { transform: rotate(0deg)   translateY(-14px) scale(1.06); }
+  100% { transform: rotate(-10deg) translateY(0)     scale(1); }
+}
+
+/* Colored light spilling across the whole room */
+body:has(#stage[data-state="on"].colorful)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, #ff3d81 0, transparent 35%),
+    radial-gradient(circle at 80% 25%, #3dc8ff 0, transparent 35%),
+    radial-gradient(circle at 70% 80%, #7dff3d 0, transparent 35%),
+    radial-gradient(circle at 25% 80%, #ffd23d 0, transparent 35%);
+  animation:
+    discoPulse 1.2s ease-in-out infinite alternate,
+    discoHue 6s linear infinite;
+}
+
+@keyframes discoPulse {
+  from { opacity: 0.3;  transform: scale(1); }
+  to   { opacity: 0.65; transform: scale(1.15); }
+}
+
+@keyframes discoHue {
+  from { filter: hue-rotate(0deg); }
+  to   { filter: hue-rotate(360deg); }
+}
+
+/* ---------- Flying flowers ---------- */
+.flower-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;   /* clicks pass through to the buttons */
+  overflow: hidden;
+}
+
+.flower {
+  position: absolute;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  animation: bloom 2s ease-out forwards;
+}
+
+/* Pop out small, grow, drift away while spinning, then fade */
+@keyframes bloom {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+               scale(1.3) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.controls button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--btn-bg);
+  border: 1.5px solid var(--btn-border);
+  border-radius: 10px;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s, color 0.2s;
+}
+
+.controls button:hover { border-color: var(--accent); }
+.controls button:active { transform: scale(0.96); }
+.controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Highlight the currently active mode */
+.controls button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1b1b1b;
+}
+
+/* ---------- Status ---------- */
+.status {
+  margin: 0;
+  min-height: 1.5em;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .controls { flex-direction: column; width: 100%; max-width: 280px; }
+  .controls button { width: 100%; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .stage.colorful .bulb,
+  body::before { animation: none !important; }
+  .flower-layer { display: none; }
+}

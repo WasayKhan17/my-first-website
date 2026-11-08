@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3 - Simple Calculator</title>
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            background-color: #f7f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calc-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 320px;
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #111111;
+        }
+
+        .inputs-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .num-input {
+            width: 42%;
+            padding: 8px 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #222222;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .op-btn {
+            width: 45px;
+            height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #ffffff;
+            border: 2px solid #222222;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+        }
+
+        .op-btn:active {
+            transform: translateY(2px);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .result-input {
+            width: 90%;
+            padding: 8px 12px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #222222;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-card">
+        <h1>Simple Calculator</h1>
+
+        <!-- Number Inputs -->
+        <div class="inputs-row">
+            <input type="number" id="num1" class="num-input" value="5">
+            <input type="number" id="num2" class="num-input" value="9">
+        </div>
+
+        <!-- Operations (+, -, x, /) -->
+        <div class="btn-group">
+            <button class="op-btn" onclick="calculate('+')">+</button>
+            <button class="op-btn" onclick="calculate('-')">-</button>
+            <button class="op-btn" onclick="calculate('*')">x</button>
+            <button class="op-btn" onclick="calculate('/')">/</button>
+        </div>
+
+        <!-- Result Box -->
+        <div>
+            <input type="text" id="result" class="result-input" readonly value="14">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calculate(operator) {
+            var val1 = parseFloat(document.getElementById("num1").value);
+            var val2 = parseFloat(document.getElementById("num2").value);
+            var resInput = document.getElementById("result");
+
+            if (isNaN(val1) || isNaN(val2)) {
+                resInput.value = "Invalid Input";
+                return;
+            }
+
+            var res = 0;
+            switch (operator) {
+                case '+':
+                    res = val1 + val2;
+                    break;
+                case '-':
+                    res = val1 - val2;
+                    break;
+                case '*':
+                    res = val1 * val2;
+                    break;
+                case '/':
+                    if (val2 === 0) {
+                        resInput.value = "Error (Div by 0)";
+                        return;
+                    }
+                    res = val1 / val2;
+                    break;
+            }
+
+            resInput.value = res;
+        }
+    </script>
+
+</body>
+</html>

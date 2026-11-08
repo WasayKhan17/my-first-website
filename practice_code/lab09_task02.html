@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2 - Toggle Background Color</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding-top: 100px;
+            transition: background-color 0.3s ease; 
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Change Background Color</h2>
+    <button id="colorBtn">Click Me to Change Color</button>
+
+    <script type="text/javascript">
+        var clickCount = 0;
+        var btn = document.getElementById("colorBtn");
+
+        btn.addEventListener("click", function() {
+            clickCount++;
+
+            // Toggle logic: 1st click skyblue, 2nd click orange, and repeat
+            if (clickCount % 2 === 1) {
+                document.body.style.backgroundColor = "skyblue";
+            } else {
+                document.body.style.backgroundColor = "orange";
+            }
+        });
+    </script>
+
+</body>
+</html>

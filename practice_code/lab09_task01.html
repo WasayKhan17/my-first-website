@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1 - Focus Event Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-group { margin-bottom: 15px; }
+        input[type="text"] { padding: 8px; width: 250px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <h2>DHTML Focus Event Example</h2>
+    <p>Click inside or tab into the input box to trigger the alert event:</p>
+
+    <div class="form-group">
+        <label for="username">Username: </label>
+        <input type="text" id="username" placeholder="Click here to focus...">
+    </div>
+
+    <script type="text/javascript">
+        // Target input element
+        var inputField = document.getElementById("username");
+
+        // Attach event listener for focus event
+        inputField.addEventListener("focus", function() {
+            alert("You have focused on the input box!");
+        });
+    </script>
+
+</body>
+</html>

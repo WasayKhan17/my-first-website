@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5 - Current Day & Time</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.8; }
+        .output { font-size: 18px; font-weight: bold; color: #1a252f; }
+    </style>
+</head>
+<body>
+
+    <h2>Current Day & Time Display</h2>
+    <div class="output" id="dayOutput"></div>
+    <div class="output" id="timeOutput"></div>
+
+    <script type="text/javascript">
+        function displayCurrentDateTime() {
+            var now = new Date();
+
+            // Array of days
+            var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var dayName = daysOfWeek[now.getDay()];
+
+            // Hours, Minutes, Seconds
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // Determine AM/PM
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+
+            // Convert 24-hour time to 12-hour format
+            hours = hours % 12;
+            hours = hours ? hours : 12; // '0' becomes '12'
+
+            // Format Output Strings
+            var dayString = "Today is : " + dayName + ".";
+            var timeString = "Current Time : " + hours + " " + ampm + " : " + minutes + " : " + seconds;
+
+            document.getElementById("dayOutput").innerText = dayString;
+            document.getElementById("timeOutput").innerText = timeString;
+        }
+
+        // Run function on page load
+        displayCurrentDateTime();
+    </script>
+
+</body>
+</html>

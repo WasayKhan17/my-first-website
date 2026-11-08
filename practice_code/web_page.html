@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Wasay Khan - Photographer</title>
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --bg-warm: #f5f0e8;
+      --text: #2c2420;
+      --text-light: #8a7e72;
+      --accent: #c4704b;
+      --accent-soft: #e8d5c4;
+      --border: #e5ddd3;
+      --card: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.8;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 28px;
+    }
+
+    header { 
+      margin-bottom: 56px; 
+      text-align: center;
+    }
+
+    h1 { 
+      font-size: 42px; 
+      font-weight: 400; 
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline { 
+      color: var(--text-light); 
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    nav { 
+      margin-bottom: 56px; 
+      text-align: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: system-ui, sans-serif;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover { 
+      color: var(--accent); 
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section { 
+      margin-bottom: 56px; 
+    }
+
+    h2 { 
+      font-size: 22px; 
+      font-weight: 400; 
+      margin-bottom: 20px; 
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    p { 
+      margin-bottom: 18px; 
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--bg-warm) 0%, var(--accent-soft) 100%);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 13px;
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 0.08;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(44, 36, 32, 0.08);
+      border-color: var(--accent-soft);
+    }
+
+    .gallery-item span {
+      position: relative;
+      z-index: 1;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+    }
+
+    .gallery-item .icon {
+      position: relative;
+      z-index: 1;
+      width: 32px;
+      height: 32px;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    a { 
+      color: var(--accent); 
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-light);
+      text-align: center;
+      font-family: system-ui, sans-serif;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 48px 20px; }
+      h1 { font-size: 32px; }
+      .gallery { gap: 12px; }
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+  <header>
+    <h1>Abdul Wasay Khan</h1>
+    <p class="tagline">Landscape & Travel Photographer</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I am a photographer based in Portland, Oregon. For the past eight years, I have traveled across the Pacific Northwest capturing the quiet beauty of forests, coastlines, and mountain ridges at dawn.</p>
+    <p>My work has been featured in National Geographic, Outdoor Magazine, and several independent galleries in Seattle and San Francisco. I believe the best photographs are the ones that make you pause and breathe.</p>
+  </section>
+
+  <section id="work">
+    <h2>Selected Work</h2>
+    <p>A few recent projects from the last season.</p>
+    <div class="gallery">
+      <div class="gallery-item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14l4-4 5 5 5-5 4 4z"/>
+        </svg>
+        <span>Karachi Coast</span>
+      </div>
+      <div class="gallery-item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14l4-4 5 5 5-5 4 4z"/>
+        </svg>
+        <span>Mount Everest</span>
+      </div>
+      <div class="gallery-item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14l4-4 5 5 5-5 4 4z"/>
+        </svg>
+        <span>kinjhar Lake</span>
+      </div>
+      <div class="gallery-item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14l4-4 5 5 5-5 4 4z"/>
+        </svg>
+        <span>Nagra Fall</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>I am available for assignments, prints, and workshops.</p>
+    <p>Email: <a href="mailto:hello@AbdulWasayKhan.photo">hello@WasayKhan.photo</a><br>
+    Instagram: <a href="#">@AbdulWasay.Khan</a></p>
+  </section>
+
+  <footer>
+    &copy; 2026 Abdul Wasay Khan. All rights reserved.
+  </footer>
+
+</body>
+</html>
+
+<!-- <circle cx="8.5" cy="8.5" r="1.5"/> -->
+ <!-- <circle cx="8.5" cy="8.5" r="1.5"/> -->
+  <!-- <circle cx="8.5" cy="8.5" r="1.5"/> -->
+   <!-- <circle cx="8.5" cy="8.5" r="1.5"/> -->

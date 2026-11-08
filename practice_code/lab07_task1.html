@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1 - Even or Odd</title>
+</head>
+<body>
+    <h2>Even / Odd Checker</h2>
+    
+    <script type="text/javascript">
+        // Prompt user for input
+        var input = prompt("Enter a number:");
+        var num = parseInt(input);
+
+        // Check if input is a valid number
+        if (isNaN(num)) {
+            alert("Please enter a valid number!");
+        } else {
+            // Check even or odd using modulo operator
+            if (num % 2 === 0) {
+                alert(num + " is an EVEN number.");
+            } else {
+                alert(num + " is an ODD number.");
+            }
+        }
+    </script>
+</body>
+</html>
